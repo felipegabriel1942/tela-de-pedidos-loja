@@ -15,6 +15,11 @@ public class Pedido implements Serializable{
 		
 	}
 	
+	public Pedido(Integer id, Cliente cliente) {
+		this.id = id;
+		this.cliente = cliente;
+	}
+	
 	public Pedido(Integer id, Produto produto, Cliente cliente) {
 		this.id = id;
 		this.produto = produto;
