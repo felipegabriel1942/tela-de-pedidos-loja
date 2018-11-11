@@ -13,11 +13,13 @@
 <h:body>
 	<h:form>
 		<p:dataTable value="#{telaBean.clientes}" var="cli" style="width: 25%"
-			selectionMode="single" selection="#{telaBean.clienteSelecionado}" rowKey="#{cli.id}">
+			selectionMode="single" selection="#{telaBean.clienteSelecionado}"
+			rowKey="#{cli.id}">
 			<f:facet name="header">
 			Lista de clientes
 		</f:facet>
-			<p:ajax event="rowSelect" listener="#{telaBean.selecionarCliente}" />
+			<p:ajax event="rowSelect" listener="#{telaBean.selecionarCliente}"
+				 update="@form"/>
 			<p:column headerText="Id" style="width: 50px">
 				<h:outputText value="#{cli.id}" />
 			</p:column>
@@ -25,11 +27,17 @@
 				<h:outputText value="#{cli.nome}" />
 			</p:column>
 		</p:dataTable>
-		<hr/>
-		<p:accordionPanel>
-		
+		<hr />
+		<h3>Lista de Pedidos</h3>
+		<p:accordionPanel
+			value="#{telaBean.listaDePedidosDoClienteSelecionado()}"
+			 var="pedido" >
+			<p:tab title="Pedido - #{pedido.id}" id="painelPedidos">
+			
+			</p:tab>
+
 		</p:accordionPanel>
-		
+
 	</h:form>
 </h:body>
 </html>

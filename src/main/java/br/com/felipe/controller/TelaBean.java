@@ -23,7 +23,11 @@ public class TelaBean {
 	
 	private List<Pedido> pedidos = new ArrayList<>();
 	
+	private List<Pedido> listaPedidosCliente = new ArrayList<>();
+	
 	private Cliente clienteSelecionado = new Cliente();
+	
+	
 
 	@PostConstruct
 	public void init() {
@@ -34,6 +38,16 @@ public class TelaBean {
 	
 	public void selecionarCliente(SelectEvent event) {
 		setClienteSelecionado((Cliente) event.getObject());
+		
+	}
+	
+	public List<Pedido> listaDePedidosDoClienteSelecionado(){
+		for (int i = 0; i < pedidos.size(); i++) {
+			if(pedidos.get(i).getCliente().getId() == clienteSelecionado.getId()) {
+				listaPedidosCliente.add(pedidos.get(i));
+			}
+		}
+		return listaPedidosCliente;
 	}
 
 	public ApplicationService getAp() {
@@ -70,6 +84,16 @@ public class TelaBean {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+
+	public List<Pedido> getListaPedidosCliente() {
+		return listaPedidosCliente;
+	}
+
+
+	public void setListaPedidosCliente(List<Pedido> listaPedidosCliente) {
+		this.listaPedidosCliente = listaPedidosCliente;
 	}
 
 }
